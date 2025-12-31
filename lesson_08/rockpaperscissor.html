@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock paper and scissor</title>
+  </head>
+  <body>
+    <p>Rock Paper and Scissors</p>
+    <button
+      onclick="
+    getResult('Rock')
+    "
+    >
+      Rock
+    </button>
+
+    <button
+      onclick="
+    getResult('Paper')
+    "
+    >
+      Paper
+    </button>
+
+    <button
+      onclick="
+        getResult('scissor')
+    "
+    >
+      Scissors
+    </button>
+    <script>
+        let resultStore = {
+            win:0,
+            loss:0,
+            tie:0
+        }
+      function computerChance() {
+        let randomNumber = Math.random();
+        let computerMove = "";
+        if (randomNumber >= 0 && randomNumber < 1 / 3) {
+          computerMove = "Rock";
+        } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
+          computerMove = "Paper";
+        } else if (randomNumber >= 2 / 3 && randomNumber < 1) {
+          computerMove = "scissor";
+        }
+        return computerMove;
+      }
+      function getResult(playerMove) {
+        let computerMove = computerChance();
+        let result = "";
+        if (playerMove === "scissor") {
+          if (computerMove === "Rock") {
+            result = "You Lose";
+          } else if (computerMove === "Paper") {
+            result = "You win";
+          } else if (computerMove === "scissor") {
+            result = "Tie";
+          }
+        } else if (playerMove === "Paper") {
+          if (computerMove === "Rock") {
+            result = "You win";
+          } else if (computerMove === "Paper") {
+            result = "Tie";
+          } else if (computerMove === "scissor") {
+            result = "You Lose";
+          }
+        } else if (playerMove === "Rock") {
+          if (computerMove === "Rock") {
+            result = "Tie";
+          } else if (computerMove === "Paper") {
+            result = "You Lose";
+          } else if (computerMove === "scissor") {
+            result = "You win";
+          }
+        }
+        if(result==='You win'){
+            resultStore.win +=1;
+        }
+        else if(result === 'You Lose'){
+            resultStore.loss +=1;
+        }
+        else if(result === 'Tie'){
+            resultStore.tie +=1;
+        }
+
+        alert(
+          `You choose ${playerMove}. Computer choose ${computerMove} and result is ${result}
+Win: ${resultStore.win}, lose: ${resultStore.loss}, Tie: ${resultStore.tie}`
+        );
+      }
+    </script>
+  </body>
+</html>
